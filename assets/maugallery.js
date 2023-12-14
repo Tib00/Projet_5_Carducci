@@ -57,13 +57,13 @@
       }
     });
 
-    $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
+    $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag); // Explorer ici pour le pbm2
     $(".gallery").on("click", ".mg-prev", () =>
       $.fn.mauGallery.methods.prevImage(options.lightboxId)
     );
     $(".gallery").on("click", ".mg-next", () =>
       $.fn.mauGallery.methods.nextImage(options.lightboxId)
-    );
+    );////////////////////////////////////////////////////////////////////////////Explorer ici pour le pbm1
   };
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
@@ -119,6 +119,7 @@
         .attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
+    ///////////////////// Champ d'étude du 1 ici ////////////////////////////////
     prevImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -154,10 +155,11 @@
         }
       });
       next =
-        imagesCollection[index] ||
+        imagesCollection[index - 1] ||
         imagesCollection[imagesCollection.length - 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
+    ///////////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     nextImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -165,7 +167,11 @@
           activeImage = $(this);
         }
       });
+      console.log("Active Image SRC:", $(activeImage).attr("src")); // Log de l'attribut src de l'image active
+
       let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
+      console.log("Active Tag:", activeTag); // Log du tag actif
+
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function() {
@@ -184,6 +190,8 @@
           }
         });
       }
+      console.log("Images Collection:", imagesCollection); // Log de la collection d'images
+
       let index = 0,
         next = null;
 
@@ -192,9 +200,15 @@
           index = i;
         }
       });
-      next = imagesCollection[index] || imagesCollection[0];
+      console.log("Active Image Index:", index); // Log de l'index de l'image active
+
+      next = imagesCollection[index + 1] || imagesCollection[0];
+      console.log("Next Image SRC:", $(next).attr("src")); // Log de l'attribut src de l'image suivante
+
+
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${
         lightboxId ? lightboxId : "galleryLightbox"
