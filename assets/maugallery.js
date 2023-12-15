@@ -63,7 +63,7 @@
     );
     $(".gallery").on("click", ".mg-next", () =>
       $.fn.mauGallery.methods.nextImage(options.lightboxId)
-    );////////////////////////////////////////////////////////////////////////////Explorer ici pour le pbm1
+    );
   };
   $.fn.mauGallery.methods = {
     createRowWrapper(element) {
@@ -119,7 +119,7 @@
         .attr("src", element.attr("src"));
       $(`#${lightboxId}`).modal("toggle");
     },
-    ///////////////////// Champ d'étude du 1 ici ////////////////////////////////
+  
     prevImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -159,7 +159,7 @@
         imagesCollection[imagesCollection.length - 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
-    ///////////////////////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    
     nextImage() {
       let activeImage = null;
       $("img.gallery-item").each(function() {
@@ -167,11 +167,7 @@
           activeImage = $(this);
         }
       });
-      console.log("Active Image SRC:", $(activeImage).attr("src")); // Log de l'attribut src de l'image active
-
       let activeTag = $(".tags-bar span.active-tag").data("images-toggle");
-      console.log("Active Tag:", activeTag); // Log du tag actif
-
       let imagesCollection = [];
       if (activeTag === "all") {
         $(".item-column").each(function() {
@@ -190,25 +186,17 @@
           }
         });
       }
-      console.log("Images Collection:", imagesCollection); // Log de la collection d'images
-
       let index = 0,
         next = null;
-
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
           index = i;
         }
       });
-      console.log("Active Image Index:", index); // Log de l'index de l'image active
-
       next = imagesCollection[index + 1] || imagesCollection[0];
-      console.log("Next Image SRC:", $(next).attr("src")); // Log de l'attribut src de l'image suivante
-
 
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${
         lightboxId ? lightboxId : "galleryLightbox"
@@ -249,12 +237,19 @@
         console.error(`Unknown tags position: ${position}`);
       }
     },
+    //////////////////////////////////////////////////////////////////////// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     filterByTag() {
       if ($(this).hasClass("active-tag")) {
         return;
       }
+      if ($(this).hasClass("active")) {
+        return;
+      }
       $(".active-tag").removeClass("active active-tag");
       $(this).addClass("active-tag");
+
+      $(".active").removeClass("active active-tag");
+      $(this).addClass("active");
 
       var tag = $(this).data("images-toggle");
 
