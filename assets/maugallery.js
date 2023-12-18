@@ -56,6 +56,11 @@
         return;
       }
     });
+    $(".gallery-item").on("keyup", function(event) {
+      if (event.key === "Enter" && options.lightBox && $(this).prop("tagName") === "IMG") {
+        $.fn.mauGallery.methods.openLightBox($(this), options.lightboxId);
+      }
+    });
 
     $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag); // Explorer ici pour le pbm2
     $(".gallery").on("click", ".mg-prev", () =>
@@ -222,13 +227,13 @@
     },
     showItemTags(gallery, position, tags) {
       var tagItems =
-        '<li class="nav-item"><span class="nav-link active active-tag"  data-images-toggle="all">Tous</span></li>';
+        '<li class="nav-item"><span tabindex="0" class="nav-link active active-tag" data-images-toggle="all">Tous</span></li>';
       $.each(tags, function(index, value) {
         tagItems += `<li class="nav-item active">
-                <span class="nav-link"  data-images-toggle="${value}">${value}</span></li>`;
+                <span tabindex="0" class="nav-link" data-images-toggle="${value}">${value}</span></li>`;
       });
       var tagsRow = `<ul class="my-4 tags-bar nav nav-pills">${tagItems}</ul>`;
-
+    
       if (position === "bottom") {
         gallery.append(tagsRow);
       } else if (position === "top") {
@@ -236,8 +241,15 @@
       } else {
         console.error(`Unknown tags position: ${position}`);
       }
+    
+      // Gestion de la navigation clavier pour les boutons
+      $('.nav-link').on('keydown', function(event) {
+        if (event.keyCode === 13 || event.keyCode === 32) {
+          event.preventDefault();
+          $(this).click();
+        }
+      });
     },
-    //////////////////////////////////////////////////////////////////////// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     filterByTag() {
       if ($(this).hasClass("active-tag")) {
         return;
