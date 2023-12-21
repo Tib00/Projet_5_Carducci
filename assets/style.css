@@ -192,10 +192,18 @@ body {
 	justify-content: space-between;
 	z-index: 1;
 }
-
+.foot{
+	border: 1px purple solid;
+	display: flex;
+	background-color: #D8D3A8 ;
+}
+#coordonees{
+	margin: auto;
+	position: relative;
+	margin-top: 6%;
+}
 #contact {
 	margin: auto;
-	background-color: #D8D3A8 ;
 	position: relative;
 	padding-inline: 100px;
 	padding-block: 100px;
