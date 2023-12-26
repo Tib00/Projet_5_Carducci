@@ -163,7 +163,7 @@
         imagesCollection[index - 1] ||
         imagesCollection[imagesCollection.length - 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
-    },
+    },////////////////////////////////////////////////////////////////////////////////// Débug de la flèche précédent en ajoutant le -1
     
     nextImage() {
       let activeImage = null;
@@ -201,7 +201,7 @@
       next = imagesCollection[index + 1] || imagesCollection[0];
 
       $(".lightboxImage").attr("src", $(next).attr("src"));
-    },
+    },////////////////////////////////////////////////////////////////////////////////// Débug de la flèche suivant en ajoutant le +1
     createLightBox(gallery, lightboxId, navigation) {
       gallery.append(`<div class="modal fade" id="${
         lightboxId ? lightboxId : "galleryLightbox"
@@ -255,16 +255,15 @@
         return;
       }
       if ($(this).hasClass("active")) {
-        return;
+        $(".nav-link.active").removeClass("active");
       }
       $(".active-tag").removeClass("active active-tag");
       $(this).addClass("active-tag");
-
-      $(".active").removeClass("active active-tag");
+    
       $(this).addClass("active");
-
+      /////////////////////////////////////////////////////////////////////////// Ici pour la couleur des boutons
       var tag = $(this).data("images-toggle");
-
+    
       $(".gallery-item").each(function() {
         $(this)
           .parents(".item-column")

@@ -111,6 +111,12 @@ body {
 .nav-pills .nav-link {
 	color: #000
 }
+/* Styles pour la classe 'currentstp' */
+.currentstp {
+    color: #fff;
+    background-color: #555534;
+    border-radius: 0;
+}
 .item-column {
 	position: relative;
 	margin-bottom: 0 !important;
