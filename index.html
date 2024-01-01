@@ -26,11 +26,6 @@
 	<meta name="twitter:title" content="Art by Nina Carducci">
 	<meta name="twitter:description" content="Photos de Nina Carducci">
 	<meta name="twitter:image" content="https://img.freepik.com/vecteurs-premium/nouveau-logo-twitter-x-2023-telechargement-vectoriel-du-logo-twitter-x_691560-10809.jpg">
-
-	<script defer src="./assets/bootstrap/bootstrap.bundle.min.js"></script>
-	
-	<script defer src="./assets/maugallery.js"></script>
-	<script defer src="./assets/scripts.js"></script>
 </head>
 <body>
 	<header class="top-header" role="banner" aria-label="header">
@@ -76,7 +71,15 @@
 		</section>
 		<section itemscope itemtype="http://schema.org/Person" id="about" role="region" aria-label="Presntation de Nina Carducci" tabindex="0">
 			<div class="picture left">
-				<img src="./assets/images/nina_Carducci_mini.webp" alt="Portrait de Nina Carducci">
+				<!-- <img src="./assets/images/nina_Carducci_mini.webp" alt="Portrait de Nina Carducci"> -->
+				<img
+					srcset="./assets/images/nina_Carducci_mini.webp 800w,
+							./assets/images/nina_Carducci_mini_b.webp 400w"
+					sizes="(max-width: 767px) 400px,
+							800px"
+					src="./assets/images/nina_Carducci_mini.webp"
+					alt="Portrait de Nina Carducci"
+					/>
 			</div>
 			<div id="about-me">
 				<h2 class="about-me__title">A propos de moi</h2>
@@ -197,5 +200,8 @@
 		</div>
 	</footer>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="./assets/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="./assets/maugallery.js"></script>
+	<script src="./assets/scripts.js"></script>
 </body>
 </html>
