@@ -62,7 +62,7 @@
         }
       });
   
-      $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag); // Explorer ici pour le pbm2
+      $(".gallery").on("click", ".nav-link", $.fn.mauGallery.methods.filterByTag);
       $(".gallery").on("click", ".mg-prev", () =>
         $.fn.mauGallery.methods.prevImage(options.lightboxId)
       );
